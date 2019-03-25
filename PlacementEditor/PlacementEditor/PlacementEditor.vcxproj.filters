@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Lib">
+      <UniqueIdentifier>{68720263-6a69-46f5-8f39-75727fba50cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Lib\Graphics">
+      <UniqueIdentifier>{4e7b8772-0c77-4442-a49a-34d1f23da5ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Window.cpp">
+      <Filter>ソース ファイル\Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\DirectGraphics9.cpp">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\GraphicsDeviceFactory.cpp">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\Graphics.cpp">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Lib.cpp">
+      <Filter>ソース ファイル\Lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Lib\Window.h">
+      <Filter>ソース ファイル\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\DirectGraphics9.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceBase.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\Graphics.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceFactory.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\GraphicsRelatedDefinitions.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Lib.h">
+      <Filter>ソース ファイル\Lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
