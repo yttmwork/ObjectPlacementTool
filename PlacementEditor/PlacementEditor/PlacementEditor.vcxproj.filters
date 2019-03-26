@@ -11,6 +11,18 @@
     <Filter Include="ソース ファイル\Lib\Graphics">
       <UniqueIdentifier>{4e7b8772-0c77-4442-a49a-34d1f23da5ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Utility">
+      <UniqueIdentifier>{ba7879cc-d4c6-46ab-b1a1-62b2817daed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Lib\File">
+      <UniqueIdentifier>{815c085b-318f-460e-989c-ebb415626980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Lib\File\Texture">
+      <UniqueIdentifier>{6a6a404a-06b7-48fb-b68d-20a66d8ae7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{d85af87d-6d2e-44ab-94ae-fae06ba003f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Main.cpp">
@@ -19,25 +31,37 @@
     <ClCompile Include="Src\Lib\Window.cpp">
       <Filter>ソース ファイル\Lib</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Lib\Graphics\DirectGraphics9.cpp">
-      <Filter>ソース ファイル\Lib\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Lib\Graphics\GraphicsDeviceFactory.cpp">
-      <Filter>ソース ファイル\Lib\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Lib\Graphics\Graphics.cpp">
       <Filter>ソース ファイル\Lib\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Src\Lib\Lib.cpp">
       <Filter>ソース ファイル\Lib</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\DirectX9Graphics.cpp">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\File\Texture\DirectX9Texture.cpp">
+      <Filter>ソース ファイル\Lib\File\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\File\Texture\TextureManager.cpp">
+      <Filter>ソース ファイル\Lib\File\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Object\Object.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\Sprite.cpp">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\SpriteManager.cpp">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Object\SpriteObject.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Lib\Window.h">
       <Filter>ソース ファイル\Lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Lib\Graphics\DirectGraphics9.h">
-      <Filter>ソース ファイル\Lib\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceBase.h">
       <Filter>ソース ファイル\Lib\Graphics</Filter>
@@ -45,14 +69,44 @@
     <ClInclude Include="Src\Lib\Graphics\Graphics.h">
       <Filter>ソース ファイル\Lib\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceFactory.h">
-      <Filter>ソース ファイル\Lib\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Lib\Graphics\GraphicsRelatedDefinitions.h">
       <Filter>ソース ファイル\Lib\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Src\Lib\Lib.h">
       <Filter>ソース ファイル\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Size.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\File\Texture\TextureBase.h">
+      <Filter>ソース ファイル\Lib\File\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\File\Texture\DirectX9Texture.h">
+      <Filter>ソース ファイル\Lib\File\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceFactoryBase.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\DirectX9DeviceFactory.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\DirectX9Graphics.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\File\Texture\TextureManager.h">
+      <Filter>ソース ファイル\Lib\File\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\Sprite.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\SpriteObject.h">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\Object.h">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\SpriteManager.h">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

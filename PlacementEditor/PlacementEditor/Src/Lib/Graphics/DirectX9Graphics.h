@@ -1,5 +1,5 @@
-﻿#ifndef DIRECT_GRAPHICS_H_
-#define DIRECT_GRAPHICS_H_
+﻿#ifndef DIRECTX9_GRAPHICS_H_
+#define DIRECTX9_GRAPHICS_H_
 
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -12,11 +12,11 @@ namespace Lib
 	//================================================================
 	//! DirectX9を使用するGraphicsデバイスクラス
 	//================================================================
-	class DirectGraphics9 : public GraphicsDeviceBase
+	class DirectX9Graphics : public GraphicsDeviceBase
 	{
 	public:
 		/** @brief Constructor */
-		DirectGraphics9() :
+		DirectX9Graphics() :
 			m_Direct3DInterface(nullptr),
 			m_Device(nullptr)
 		{
@@ -24,7 +24,7 @@ namespace Lib
 		}
 
 		/** @brief Destructor */
-		virtual ~DirectGraphics9()
+		virtual ~DirectX9Graphics()
 		{
 			Release();
 		}
@@ -57,6 +57,36 @@ namespace Lib
 		*/
 		virtual void FinishRendering();
 
+		/**
+		* @brief 描画関数@n
+		* 指定した位置をサイズで矩形を作成して描画する
+		* @param[in] pos_x X座標
+		* @param[in] pos_y Y座標
+		* @param[in] pos_z Z座標
+		* @param[in] width 矩形横幅
+		* @param[in] height 矩形縦幅
+		*/
+		virtual void Draw(float pos_x, float pos_y, float pos_z, float width, float height);
+
+		/**
+		* @brief スプライト描画関数@n
+		* 指定されたスプライトを描画する
+		* @param[in] texture_key_word スプライトで使用するテクスチャのキーワード
+		* @param[in] sprite_name 使用するスプライト名
+		* @param[in] pos_x X座標
+		* @param[in] pos_y Y座標
+		* @param[in] pos_z Z座標
+		*/
+		virtual void Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z);
+
+		/**
+		* テクスチャ読み込み関数@n
+		* 指定されたファイル名からテクスチャを読み込む@n
+		* ※App側で読み込む場合はTextureManagerから行う事
+		* @param[in] file_name 読み込む予定のファイル名(パス込み)
+		*/
+		virtual TextureBase* LoadTexture(std::string file_name);
+
 	private:
 		/**
 		* @brief インターフェース生成関数@n
@@ -85,6 +115,7 @@ namespace Lib
 
 		/** @brief ビューポート設定関数 */
 		bool SetUpViewPort();
+
 	private:
 		D3DPRESENT_PARAMETERS m_PresentParameter;	//!< デバイスのパラメータ設定データ
 		LPDIRECT3D9 m_Direct3DInterface;			//!< Device作成用のInterface

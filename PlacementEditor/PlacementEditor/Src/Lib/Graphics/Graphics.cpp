@@ -1,20 +1,18 @@
 ﻿#include <Windows.h>
+#include <string>
 #include "GraphicsRelatedDefinitions.h"
 #include "Graphics.h"
-#include "GraphicsDeviceFactory.h"
+#include "DirectX9DeviceFactory.h"
 
 namespace Lib
 {
-	bool Graphics::Initialize(unsigned int width, unsigned int height, bool is_window_mode, GraphicsDevice select_device, HWND window_handle)
+	bool Graphics::Initialize(unsigned int width, unsigned int height, bool is_window_mode, HWND window_handle)
 	{
-		m_SelectedDevice = select_device;
+#if GRAPHICS_DEVICE_TYPE == GRAPHICS_DEVICE_TYPE_DIRECTX9
+		DirectX9DeviceFactory factory;
+#endif
 
-		if (m_Factory == nullptr)
-		{
-			m_Factory = new GraphicsDeviceFactory();
-		}
-
-		m_Device = m_Factory->CreateDevice(m_SelectedDevice);
+		m_Device = factory.CreateDevice();
 
 		if (m_Device->Initialize(width, height, is_window_mode, window_handle) == false)
 		{
@@ -26,12 +24,6 @@ namespace Lib
 
 	void Graphics::Release()
 	{
-		if (m_Factory != nullptr)
-		{
-			delete (m_Factory);
-			m_Factory = nullptr;
-		}
-
 		if (m_Device != nullptr)
 		{
 			delete (m_Device);
@@ -48,4 +40,20 @@ namespace Lib
 	{
 		m_Device->FinishRendering();
 	}
+
+	void Graphics::Draw(float pos_x, float pos_y, float pos_z, float width, float height)
+	{
+		m_Device->Draw(pos_x, pos_y, pos_z, width, height);
+	}
+
+	void Graphics::Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z)
+	{
+		m_Device->Draw(texture_key_word, sprite_name, pos_x, pos_y, pos_z);
+	}
+
+	TextureBase* Graphics::LoadTexture(std::string file_name)
+	{
+		return m_Device->LoadTexture(file_name);
+	}
+
 }
