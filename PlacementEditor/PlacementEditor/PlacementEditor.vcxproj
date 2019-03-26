@@ -19,12 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Lib\Graphics\DirectGraphics9.cpp" />
+    <ClCompile Include="Src\Lib\File\Texture\DirectX9Texture.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\File\Texture\TextureManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\DirectX9Graphics.cpp" />
     <ClCompile Include="Src\Lib\Graphics\Graphics.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Src\Lib\Graphics\GraphicsDeviceFactory.cpp" />
+    <ClCompile Include="Src\Lib\Graphics\Sprite.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\SpriteManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Src\Lib\Lib.cpp" />
     <ClCompile Include="Src\Lib\Window.cpp">
       <SubType>
@@ -34,9 +49,24 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Src\Object\Object.cpp" />
+    <ClCompile Include="Src\Object\SpriteObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Lib\Graphics\DirectGraphics9.h" />
+    <ClInclude Include="Src\Lib\File\Texture\DirectX9Texture.h" />
+    <ClInclude Include="Src\Lib\File\Texture\TextureManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\File\Texture\TextureBase.h" />
+    <ClInclude Include="Src\Lib\Graphics\DirectX9Graphics.h" />
+    <ClInclude Include="Src\Lib\Graphics\DirectX9DeviceFactory.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Lib\Graphics\GraphicsRelatedDefinitions.h">
       <SubType>
       </SubType>
@@ -46,12 +76,29 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceBase.h" />
-    <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceFactory.h" />
+    <ClInclude Include="Src\Lib\Graphics\GraphicsDeviceFactoryBase.h" />
+    <ClInclude Include="Src\Lib\Graphics\Sprite.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Graphics\SpriteManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Lib\Lib.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="Src\Lib\Window.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Object\Object.h" />
+    <ClInclude Include="Src\Object\SpriteObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Size.h">
       <SubType>
       </SubType>
     </ClInclude>

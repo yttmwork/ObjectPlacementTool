@@ -1,6 +1,7 @@
 ﻿#include <string>
 #include "Lib.h"
 #include "Window.h"
+#include "File/Texture/TextureManager.h"
 #include "Graphics/Graphics.h"
 
 namespace Lib
@@ -22,6 +23,7 @@ namespace Lib
 
 	void Exit()
 	{
+		TextureManager::Instance()->AllRelease();
 		Graphics::Instance()->Release();
 	}
 }

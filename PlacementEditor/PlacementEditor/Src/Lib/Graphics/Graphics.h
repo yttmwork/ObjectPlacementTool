@@ -3,7 +3,6 @@
 
 #include "GraphicsRelatedDefinitions.h"
 #include "GraphicsDeviceBase.h"
-#include "GraphicsDeviceFactory.h"
 
 namespace Lib
 {
@@ -43,7 +42,7 @@ namespace Lib
 		* @param[in] is_window_mode ウィンドウモード設定(オプション：デフォルトはウィンドウモード)
 		* @param[in] window_handle GraphicsDeviceで使用するウィンドウハンドル(オプション：デフォルトはWindow生成で使用したウィンドウハンドル)
 		*/
-		bool Initialize(unsigned int width, unsigned int height, bool is_window_mode = true, GraphicsDevice select_device = GraphicsDevice::DirectX9, HWND window_handle = nullptr);
+		bool Initialize(unsigned int width, unsigned int height, bool is_window_mode = true, HWND window_handle = nullptr);
 
 		/**
 		* @brief 解放関数@n
@@ -63,6 +62,36 @@ namespace Lib
 		*/
 		void FinishRendering();
 
+		/**
+		* @brief 矩形描画関数@n
+		* 指定した位置をサイズで矩形を作成して描画する
+		* @param[in] pos_x X座標
+		* @param[in] pos_y Y座標
+		* @param[in] pos_z Z座標
+		* @param[in] width 矩形横幅
+		* @param[in] height 矩形縦幅
+		*/
+		void Draw(float pos_x, float pos_y, float pos_z, float width, float height);
+
+		/**
+		* @brief スプライト描画関数@n
+		* 指定されたスプライトを描画する
+		* @param[in] texture_key_word スプライトで使用するテクスチャのキーワード
+		* @param[in] sprite_name 使用するスプライト名
+		* @param[in] pos_x X座標
+		* @param[in] pos_y Y座標
+		* @param[in] pos_z Z座標
+		*/
+		void Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z);
+
+		/**
+		* テクスチャ読み込み関数@n
+		* 指定されたファイル名からテクスチャを読み込む@n
+		* ※App側で読み込む場合はTextureManagerから行う事
+		* @param[in] file_name 読み込む予定のファイル名(パス込み)
+		*/
+		TextureBase* LoadTexture(std::string file_name);
+
 	private:
 		/**
 		* @brief Constructor@n
@@ -71,16 +100,12 @@ namespace Lib
 		* privateなのはインスタンス化阻止対応
 		*/
 		Graphics() :
-			m_SelectedDevice(GraphicsDevice::DirectX9),
-			m_Device(nullptr),
-			m_Factory(nullptr)
+			m_Device(nullptr)
 		{
 		}
 
 	private:
-		GraphicsDevice m_SelectedDevice;		// 選択されたデバイス
-		GraphicsDeviceFactory* m_Factory;		// デバイス生成Factory
-		GraphicsDeviceBase* m_Device;			// GraphicsDevice
+		GraphicsDeviceBase* m_Device;			//!< GraphicsDevice
 	};
 }
 

@@ -1,9 +1,13 @@
-﻿#include "DirectGraphics9.h"
+﻿#include "DirectX9Graphics.h"
+#include "GraphicsRelatedDefinitions.h"
 #include "../Window.h"
+#include "../File/Texture/DirectX9Texture.h"
+#include "SpriteManager.h"
+#include "../File/Texture/TextureManager.h"
 
 namespace Lib
 {
-	bool DirectGraphics9::Initialize(unsigned int width, unsigned int height, bool is_window_mode, HWND window_handle)
+	bool DirectX9Graphics::Initialize(unsigned int width, unsigned int height, bool is_window_mode, HWND window_handle)
 	{
 		if (window_handle == nullptr)
 		{
@@ -34,7 +38,7 @@ namespace Lib
 		return true;
 	}
 
-	void DirectGraphics9::Release()
+	void DirectX9Graphics::Release()
 	{
 		if (m_Device != nullptr)
 		{
@@ -48,8 +52,8 @@ namespace Lib
 			m_Direct3DInterface = nullptr;
 		}
 	}
-		
-	void DirectGraphics9::StartRendering()
+
+	void DirectX9Graphics::StartRendering()
 	{
 		m_Device->Clear(0L,
 			nullptr,
@@ -64,15 +68,102 @@ namespace Lib
 		m_Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 		m_Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	}
-	
-	void DirectGraphics9::FinishRendering()
+
+	void DirectX9Graphics::FinishRendering()
 	{
 		m_Device->EndScene();
 
 		m_Device->Present(NULL, NULL, NULL, NULL);
 	}
 
-	bool DirectGraphics9::CreateInterface()
+	void DirectX9Graphics::Draw(float pos_x, float pos_y, float pos_z, float width, float height)
+	{
+		CustomVertex2D vertex[] =
+		{
+			{ pos_x, pos_y, pos_z, 1.0f, 0xffffffff, 0.0f, 0.0f },
+			{ pos_x + width, pos_y, pos_z, 1.0f, 0xffffffff, 0.0f, 0.0f },
+			{ pos_x + width, pos_y + height, pos_z, 1.0f, 0xffffffff, 0.0f, 0.0f },
+			{ pos_x, pos_y + height, pos_z, 1.0f, 0xffffffff, 0.0f, 0.0f },
+		};
+
+		m_Device->SetTexture(0, nullptr);
+		m_Device->SetFVF(Lib::Vertex2DFVF);
+		m_Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex, sizeof(CustomVertex2D));
+	}
+
+	void DirectX9Graphics::Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z)
+	{
+		CustomVertex2D vertex_list[4];
+
+		for (int i = 0; i < 4; i++)
+		{
+			vertex_list[i].m_X = pos_x;
+			vertex_list[i].m_Y = pos_y;
+			vertex_list[i].m_Z = pos_z;
+			vertex_list[i].m_Rhw = 1.0f;
+			vertex_list[i].m_Color = 0xffffffff;
+		}
+		Sprite* sprite = SpriteManager::Instance()->Find(texture_key_word, sprite_name);
+		if (sprite == nullptr)
+		{
+			return;
+		}
+		sprite->ReflectOnVertex(vertex_list);
+
+		TextureBase* texture = TextureManager::Instance()->Find(texture_key_word);
+		if (texture != nullptr)
+		{
+			texture->SetToGraphicsDevice(0);
+		}
+		m_Device->SetFVF(Lib::Vertex2DFVF);
+		m_Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex_list, sizeof(CustomVertex2D));
+	}
+
+	TextureBase* DirectX9Graphics::LoadTexture(std::string file_name)
+	{
+		LPDIRECT3DTEXTURE9 texture;
+		Size size;
+		D3DXIMAGE_INFO info;
+
+		// 2の階乗じゃないので元のサイズを取得してD3DXCreateTextureFromFileExで使う
+		D3DXGetImageInfoFromFile(file_name.c_str(), &info);
+		
+		if (FAILED( D3DXCreateTextureFromFileEx(m_Device,
+											file_name.c_str(),
+											info.Width,
+											info.Height,
+											1,
+											0,
+											D3DFMT_UNKNOWN,
+											D3DPOOL_MANAGED,
+											D3DX_DEFAULT,
+											D3DX_DEFAULT,
+											0x0000ff00,
+											nullptr,
+											nullptr,
+											&texture)))
+		{
+			return nullptr;
+		} 
+		else
+		{
+			// テクスチャサイズの取得
+			D3DSURFACE_DESC desc;
+
+			if( FAILED( texture->GetLevelDesc( 0, &desc ) ))
+			{
+				texture->Release();
+				return nullptr;
+			}
+			size.Width = desc.Width;
+			size.Height = desc.Height;
+		}
+
+		return new DirectX9Texture(m_Device, texture, size);
+	}
+
+
+	bool DirectX9Graphics::CreateInterface()
 	{
 		// インターフェース作成
 		m_Direct3DInterface = Direct3DCreate9(D3D_SDK_VERSION);
@@ -85,7 +176,7 @@ namespace Lib
 		return true;
 	}
 
-	void DirectGraphics9::SetUpPasentParameter(unsigned int width, unsigned int height, bool is_window_mode, HWND window_handle)
+	void DirectX9Graphics::SetUpPasentParameter(unsigned int width, unsigned int height, bool is_window_mode, HWND window_handle)
 	{
 		// バックバッファの数 => 1
 		m_PresentParameter.BackBufferCount = 1;
@@ -111,7 +202,7 @@ namespace Lib
 		m_PresentParameter.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	}
 
-	bool DirectGraphics9::CreateDevice(HWND window_handle)
+	bool DirectX9Graphics::CreateDevice(HWND window_handle)
 	{
 		// DirectDeviceの作成
 		if (FAILED(m_Direct3DInterface->CreateDevice(D3DADAPTER_DEFAULT,
@@ -127,7 +218,7 @@ namespace Lib
 		return true;
 	}
 
-	bool DirectGraphics9::SetUpViewPort()
+	bool DirectX9Graphics::SetUpViewPort()
 	{
 		// ビューポートパラメータ
 		D3DVIEWPORT9 view_port;
