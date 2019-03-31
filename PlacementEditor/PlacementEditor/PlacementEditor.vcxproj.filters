@@ -58,6 +58,9 @@
     <ClCompile Include="Src\Object\SpriteObject.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Lib\Graphics\GraphicsDeviceBase.cpp">
+      <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Lib\Window.h">

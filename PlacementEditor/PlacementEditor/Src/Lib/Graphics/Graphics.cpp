@@ -41,14 +41,14 @@ namespace Lib
 		m_Device->FinishRendering();
 	}
 
-	void Graphics::Draw(float pos_x, float pos_y, float pos_z, float width, float height)
+	void Graphics::Draw(float pos_x, float pos_y, float pos_z, float width, float height, float degree)
 	{
-		m_Device->Draw(pos_x, pos_y, pos_z, width, height);
+		m_Device->Draw(pos_x, pos_y, pos_z, width, height, degree);
 	}
 
-	void Graphics::Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z)
+	void Graphics::Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree)
 	{
-		m_Device->Draw(texture_key_word, sprite_name, pos_x, pos_y, pos_z);
+		m_Device->Draw(texture_key_word, sprite_name, pos_x, pos_y, pos_z, degree);
 	}
 
 	TextureBase* Graphics::LoadTexture(std::string file_name)
