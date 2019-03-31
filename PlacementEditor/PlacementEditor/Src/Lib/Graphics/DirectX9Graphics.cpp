@@ -76,7 +76,7 @@ namespace Lib
 		m_Device->Present(NULL, NULL, NULL, NULL);
 	}
 
-	void DirectX9Graphics::Draw(float pos_x, float pos_y, float pos_z, float width, float height)
+	void DirectX9Graphics::Draw(float pos_x, float pos_y, float pos_z, float width, float height, float degree)
 	{
 		CustomVertex2D vertex[] =
 		{
@@ -86,12 +86,14 @@ namespace Lib
 			{ pos_x, pos_y + height, pos_z, 1.0f, 0xffffffff, 0.0f, 0.0f },
 		};
 
+		VertexTransform(vertex, degree, 1.0f, 1.0f);
+
 		m_Device->SetTexture(0, nullptr);
 		m_Device->SetFVF(Lib::Vertex2DFVF);
 		m_Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex, sizeof(CustomVertex2D));
 	}
 
-	void DirectX9Graphics::Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z)
+	void DirectX9Graphics::Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree)
 	{
 		CustomVertex2D vertex_list[4];
 
@@ -109,6 +111,7 @@ namespace Lib
 			return;
 		}
 		sprite->ReflectOnVertex(vertex_list);
+		VertexTransform(vertex_list, degree, 1.0f, 1.0f);
 
 		TextureBase* texture = TextureManager::Instance()->Find(texture_key_word);
 		if (texture != nullptr)

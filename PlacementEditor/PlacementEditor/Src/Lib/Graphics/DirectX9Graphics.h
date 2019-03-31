@@ -65,8 +65,9 @@ namespace Lib
 		* @param[in] pos_z Z座標
 		* @param[in] width 矩形横幅
 		* @param[in] height 矩形縦幅
+		* @param[in] degree 回転角度(デフォルトは0.0)
 		*/
-		virtual void Draw(float pos_x, float pos_y, float pos_z, float width, float height);
+		virtual void Draw(float pos_x, float pos_y, float pos_z, float width, float height, float degree = 0.0f);
 
 		/**
 		* @brief スプライト描画関数@n
@@ -76,8 +77,9 @@ namespace Lib
 		* @param[in] pos_x X座標
 		* @param[in] pos_y Y座標
 		* @param[in] pos_z Z座標
+		* @param[in] degree 回転角度(デフォルトは0.0)
 		*/
-		virtual void Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z);
+		virtual void Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree = 0.0f);
 
 		/**
 		* テクスチャ読み込み関数@n

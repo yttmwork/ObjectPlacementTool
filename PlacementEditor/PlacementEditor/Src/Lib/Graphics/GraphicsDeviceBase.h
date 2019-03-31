@@ -3,6 +3,7 @@
 
 #include <Windows.h>
 #include "../File/Texture/TextureBase.h"
+#include "GraphicsRelatedDefinitions.h"
 
 namespace Lib
 {
@@ -60,8 +61,9 @@ namespace Lib
 		* @param[in] pos_z Z座標
 		* @param[in] width 矩形横幅
 		* @param[in] height 矩形縦幅
+		* @param[in] degree 回転角度(デフォルトは0.0)
 		*/
-		virtual void Draw(float pos_x, float pos_y, float pos_z, float width, float height) = 0;
+		virtual void Draw(float pos_x, float pos_y, float pos_z, float width, float height, float degree = 0.0f) = 0;
 
 		/**
 		* @brief スプライト描画関数@n
@@ -71,8 +73,9 @@ namespace Lib
 		* @param[in] pos_x X座標
 		* @param[in] pos_y Y座標
 		* @param[in] pos_z Z座標
+		* @param[in] degree 回転角度(デフォルトは0.0)
 		*/
-		virtual void Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z) = 0;
+		virtual void Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree = 0.0f) = 0;
 
 		/**
 		* @brief テクスチャ読み込み@n
@@ -81,6 +84,17 @@ namespace Lib
 		* @param[in] file_name 読み込む予定のテクスチャのファイル名(パス込み)
 		*/
 		virtual TextureBase* LoadTexture(std::string file_name) = 0;
+
+	protected:
+		/**
+		* @brief 頂点変換
+		* 矩形頂点に対して拡縮、回転を行う
+		* @param[out] vertex_list 変換対象の頂点リスト
+		* @param[in] degree 回転角度
+		* @param[in] scale_x 拡縮率(X)
+		* @param[in] scale_y 拡縮率(Y)
+		*/
+		void VertexTransform(CustomVertex2D vertex_list[4], float degree, float scale_x, float scale_y);
 	};
 }
 
