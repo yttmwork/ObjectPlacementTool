@@ -54,6 +54,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Src\Object\Object.cpp" />
+    <ClCompile Include="Src\Object\ObjectFactory.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Src\Object\ObjectManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Src\Object\SpriteObject.cpp">
       <SubType>
       </SubType>
@@ -97,7 +105,27 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Src\Object\CreateParameter\CreateParameterBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Object\CreateParameter\SpriteObjectCreateParameter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Object\Object.h" />
+    <ClInclude Include="Src\Object\ObjectFactory.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Object\ObjectManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Object\ObjectRelatedDefinitions.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Object\SpriteObject.h">
       <SubType>
       </SubType>

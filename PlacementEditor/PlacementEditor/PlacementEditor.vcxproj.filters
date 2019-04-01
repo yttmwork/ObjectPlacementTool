@@ -23,6 +23,9 @@
     <Filter Include="ソース ファイル\Object">
       <UniqueIdentifier>{d85af87d-6d2e-44ab-94ae-fae06ba003f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\CreateParameter">
+      <UniqueIdentifier>{f41d7727-8dad-478d-a742-ef97afe2c6e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Main.cpp">
@@ -60,6 +63,12 @@
     </ClCompile>
     <ClCompile Include="Src\Lib\Graphics\GraphicsDeviceBase.cpp">
       <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Object\ObjectManager.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Object\ObjectFactory.cpp">
+      <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +119,21 @@
     </ClInclude>
     <ClInclude Include="Src\Lib\Graphics\SpriteManager.h">
       <Filter>ソース ファイル\Lib\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\ObjectManager.h">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\ObjectRelatedDefinitions.h">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\CreateParameter\CreateParameterBase.h">
+      <Filter>ソース ファイル\Object\CreateParameter</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\CreateParameter\SpriteObjectCreateParameter.h">
+      <Filter>ソース ファイル\Object\CreateParameter</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Object\ObjectFactory.h">
+      <Filter>ソース ファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

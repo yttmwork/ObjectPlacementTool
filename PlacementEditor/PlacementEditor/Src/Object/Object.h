@@ -1,6 +1,9 @@
 ﻿#ifndef OBJECT_H_
 #define OBJECT_H_
 
+struct CreateParamterBase;
+struct SpriteObjectCreateParameter;
+
 //=====================================================================//
 //! オブジェクト基底クラス
 //=====================================================================//
@@ -9,17 +12,20 @@ class Object
 public:
 	/**
 	* @brief Constructor
-	* @param[in] x 描画座標(X)
-	* @param[in] y 描画座標(Y)
-	* @param[in] z 描画座標(Z)
+	* @param[in] x X軸描画座標
+	* @param[in] y Y軸描画座標
+	* @param[in] z Z軸描画座標(初期値：0.0f)
+	* @param[in] degree 回転角度(度数法 初期値：0.0f)
+	* @param[in] scale_x X軸拡縮率(初期値：1.0f)
+	* @param[in] scale_y Y軸拡縮率(初期値：1.0f)
 	*/
-	Object(float x, float y, float z) :
+	Object(float x, float y, float z, float degree = 0.0f, float scale_x = 1.0f, float scale_y = 1.0f) :
 		m_PosX(x),
 		m_PosY(y),
 		m_PosZ(z),
-		m_Degree(0.0f),
-		m_ScaleX(1.0f),
-		m_ScaleY(1.0f),
+		m_Degree(degree),
+		m_ScaleX(scale_x),
+		m_ScaleY(scale_y),
 		m_IsDelete(false)
 	{}
 
@@ -37,6 +43,12 @@ public:
 	* 継承先で必ず実装させるために純粋仮想関数にする
 	*/
 	virtual void Draw() = 0;
+
+	/** 削除判定フラグのゲッター */
+	virtual bool IsDelete()
+	{
+		return m_IsDelete;
+	}
 
 protected:
 	float m_PosX;		//!< X座標

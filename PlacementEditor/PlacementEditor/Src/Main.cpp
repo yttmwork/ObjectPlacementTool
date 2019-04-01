@@ -6,6 +6,10 @@
 #include "Lib/File/Texture/TextureManager.h"
 #include "Lib/Graphics/SpriteManager.h"
 #include "Object/SpriteObject.h"
+#include "Object/CreateParameter/CreateParameterBase.h"
+#include "Object/CreateParameter/SpriteObjectCreateParameter.h"
+#include "Object/ObjectFactory.h"
+#include "Object//ObjectManager.h"
 
 //#include "DirectX.h"
 
@@ -16,10 +20,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 {
 	// メモリリーク検出
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
-	Size size01;
-	Size size02(100, 200);
-	Size size03(size02);
 
 	if (Lib::Initialize("オブジェクト配置画面", 1280, 720) == false)
 	{
@@ -32,7 +32,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	}
 
 	SpriteManager::Instance()->Entry("Character", "Character", 0.0f, 0.0f, Size(128.0f, 128.0f));
-	SpriteObject object("Character", 100.0f, 100.0f, 0.0f);
+	SpriteObjectCreateParameter param = {
+		"Character", 100.0f, 100.0f, 0.0f, 0.0f, 1.0f,1.0f
+	};
+	Object* object = ObjectFactory::CreateSprite(param);
+	
 	while (true)
 	{
 		MSG msg;
@@ -51,11 +55,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		}
 		else 
 		{
-			object.Update();
+			ObjectManager::Instance()->Update();
 
 			Lib::Graphics::Instance()->StartRendering();
 
-			object.Draw();
+			ObjectManager::Instance()->Draw();
 
 			Lib::Graphics::Instance()->FinishRendering();
 		}
