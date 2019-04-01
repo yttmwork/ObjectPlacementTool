@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Object.h"
+#include "CreateParameter/SpriteObjectCreateParameter.h"
 
 //=====================================================================//
 //! Sprite描画用オブジェクトクラス
@@ -12,16 +13,9 @@ class SpriteObject : public Object
 public:
 	/**
 	* @brief Constructor
-	* @param[in] sprite_name 描画予定のスプライト名
-	* @param[in] x 描画座標(X)
-	* @param[in] y 描画座標(Y)
-	* @param[in] z 描画座標(Z)
+	* @param[in] parameter 初期化用パラメータデータ
 	*/
-	SpriteObject(std::string sprite_name, float x, float y, float z) :
-		Object(x, y, z),
-		m_SpriteName(sprite_name)
-	{
-	}
+	SpriteObject(SpriteObjectCreateParameter& parameter);
 
 	/** Destructor */
 	virtual ~SpriteObject()
