@@ -26,6 +26,9 @@
     <Filter Include="ソース ファイル\Object\CreateParameter">
       <UniqueIdentifier>{f41d7727-8dad-478d-a742-ef97afe2c6e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Lib\Input">
+      <UniqueIdentifier>{b1aa9840-1704-4e72-91f0-6b9c12a41c25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Main.cpp">
@@ -69,6 +72,12 @@
     </ClCompile>
     <ClCompile Include="Src\Object\ObjectFactory.cpp">
       <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Input\Input.cpp">
+      <Filter>ソース ファイル\Lib\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Input\DirectInput.cpp">
+      <Filter>ソース ファイル\Lib\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +143,18 @@
     </ClInclude>
     <ClInclude Include="Src\Object\ObjectFactory.h">
       <Filter>ソース ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Vec.h">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Input\Input.h">
+      <Filter>ソース ファイル\Lib\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Input\InputRelatedDefinition.h">
+      <Filter>ソース ファイル\Lib\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Input\DirectInput.h">
+      <Filter>ソース ファイル\Lib\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

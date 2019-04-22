@@ -44,6 +44,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Src\Lib\Input\DirectInput.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Src\Lib\Input\Input.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Src\Lib\Lib.cpp" />
     <ClCompile Include="Src\Lib\Window.cpp">
       <SubType>
@@ -97,6 +105,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Src\Lib\Input\DirectInput.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Input\Input.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Lib\Input\InputRelatedDefinition.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Lib\Lib.h">
       <SubType>
       </SubType>
@@ -131,6 +151,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Src\Utility\Size.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Utility\Vec.h">
       <SubType>
       </SubType>
     </ClInclude>

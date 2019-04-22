@@ -10,6 +10,7 @@
 #include "Object/CreateParameter/SpriteObjectCreateParameter.h"
 #include "Object/ObjectFactory.h"
 #include "Object//ObjectManager.h"
+#include "Lib/Input/Input.h"
 
 //#include "DirectX.h"
 
@@ -56,6 +57,15 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		else 
 		{
 			ObjectManager::Instance()->Update();
+
+			Lib::Input::Instance()->Update();
+
+			if (Lib::Input::Instance()->OnMouseUp(MouseKey::Left) == true)
+			{
+				Vec2 pos = Lib::Input::Instance()->GetMousePos();
+				int x = 0;
+				x = 100;
+			}
 
 			Lib::Graphics::Instance()->StartRendering();
 

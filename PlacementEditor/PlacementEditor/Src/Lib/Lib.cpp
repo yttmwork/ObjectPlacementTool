@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "File/Texture/TextureManager.h"
 #include "Graphics/Graphics.h"
+#include "Input/Input.h"
 
 namespace Lib
 {
@@ -18,6 +19,11 @@ namespace Lib
 			return false;
 		}
 
+		if (Input::Instance()->Initialize() == false)
+		{
+			return false;
+		}
+
 		return true;
 	}
 
@@ -25,5 +31,6 @@ namespace Lib
 	{
 		TextureManager::Instance()->AllRelease();
 		Graphics::Instance()->Release();
+		Input::Instance()->Release();
 	}
 }
