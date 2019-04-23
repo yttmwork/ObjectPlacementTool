@@ -17,7 +17,22 @@ public:
 	*/
 	SpriteObject(SpriteObjectCreateParameter& parameter);
 
-	/** Destructor */
+	/**
+	* @brief Constructor
+	* @param[in] sprite_name スプライト名
+	* @param[in] x X軸描画座標
+	* @param[in] y Y軸描画座標
+	* @param[in] z Z軸描画座標(初期値：0.0f)
+	* @param[in] degree 回転角度(度数法 初期値：0.0f)
+	* @param[in] scale_x X軸拡縮率(初期値：1.0f)
+	* @param[in] scale_y Y軸拡縮率(初期値：1.0f)
+	*/
+	SpriteObject(std::string sprite_name, float x, float y, float z = 0.0f, float degree = 0.0f, float scale_x = 1.0f, float scale_y = 1.0f) :
+		Object(x, y, z, degree, scale_x, scale_y),
+		m_SpriteName(sprite_name)
+	{}
+
+	/** @brief Destructor */
 	virtual ~SpriteObject()
 	{}
 

@@ -10,7 +10,7 @@
 class ObjectManager
 {
 public:
-	/** Instanceのゲッター */
+	/** @brief Instanceのゲッター */
 	static ObjectManager* Instance()
 	{
 		static ObjectManager instance;
@@ -18,17 +18,23 @@ public:
 	}
 
 public:
-	/** Destructor */
+	/** @brief Destructor */
 	~ObjectManager()
 	{
 	}
 
 	/**
-	* @brief 登録関数@n
+	* @brief 登録リスト追加関数@n
 	* 引数のオブジェクトをリストに登録する
 	* @param[in] register_obj 登録するオブジェクト
 	*/
-	void Register(Object* register_obj);
+	void AddToRegistration(Object* register_obj);
+
+	/**
+	* @brief 登録関数@n
+	* m_RegisterListをm_ObjectListに追加する
+	*/
+	void Register();
 
 	/**
 	* @brief 実行関数@n
@@ -43,24 +49,25 @@ public:
 	void Draw();
 
 	/**
-	* 削除関数@n
-	* 管理しているオブジェクトの削除判定を行い、
+	* @brief 削除関数@n
+	* 管理しているオブジェクトの削除判定を行い、@n
 	* 削除対処となっているオブジェクトをリストから外す
 	*/
 	void Delete();
 
 	/**
-	* 全削除関数@n
+	* @brief 全削除関数@n
 	* 管理しているオブジェクトを全て削除する
 	*/
 	void AllDelete();
 
 private:
-	/** Constructor */
+	/** @brief Constructor */
 	ObjectManager() {}
 
 private:
-	std::vector<Object*> m_ObjectList;	//!< 管理中のオブジェクトのリスト
+	std::vector<Object*> m_RegisterList;	//!< 登録オブジェクトリスト
+	std::vector<Object*> m_ObjectList;		//!< 管理中のオブジェクトのリスト
 };
 
 #endif

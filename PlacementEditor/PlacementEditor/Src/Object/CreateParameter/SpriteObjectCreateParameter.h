@@ -6,7 +6,7 @@
 #include "../SpriteObject.h"
 
 //=====================================================================//
-//! SpriteObject用パラメータ構造体
+//! Spriteオブジェクト生成情報構造体
 //=====================================================================//
 struct SpriteObjectCreateParameter : public CreateParameterBase
 {
@@ -15,7 +15,7 @@ struct SpriteObjectCreateParameter : public CreateParameterBase
 	* @param[in] sprite_name 描画予定のスプライト名
 	* @param[in] x X軸描画座標
 	* @param[in] y Y軸描画座標
-	* @param[in] z Z軸描画座標(初期値1.0f)
+	* @param[in] z Z軸描画座標(初期値0.0f)
 	* @param[in] degree 回転角度(度数法、初期値0.0f)
 	* @param[in] scale_x X軸拡縮率(初期値1.0f)
 	* @param[in] scale_y Y軸拡縮率(初期値1.0f)
@@ -28,7 +28,7 @@ struct SpriteObjectCreateParameter : public CreateParameterBase
 
 	std::string SpriteName;	//!< スプライト名
 private:
-	/** Constructor */
+	/** @brief Constructor */
 	SpriteObjectCreateParameter() = delete;
 };
 

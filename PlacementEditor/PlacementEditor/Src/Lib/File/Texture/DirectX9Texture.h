@@ -24,20 +24,20 @@ namespace Lib
 			TextureBase(size)
 		{}
 
-		/** Destructor */
+		/** @brief Destructor */
 		virtual ~DirectX9Texture()
 		{
 			Release();
 		}
 
 		/**
-		* テクスチャ解放関数@n
+		* @brief テクスチャ解放関数@n
 		* このクラスが保持しているテクスチャを解放する
 		*/
 		virtual void Release();
 
 		/**
-		* テクスチャ設定関数@n
+		* @brief テクスチャ設定関数@n
 		* グラフィクスデバイスに保持しているテクスチャを設定するための純粋仮想関数
 		* @param[in] stage_id テクスチャステージのID
 		*/

@@ -77,14 +77,13 @@ namespace Lib
 		/**
 		* @brief スプライト描画関数@n
 		* 指定されたスプライトを描画する
-		* @param[in] texture_key_word スプライトで使用するテクスチャのキーワード
 		* @param[in] sprite_name 使用するスプライト名
 		* @param[in] pos_x X座標
 		* @param[in] pos_y Y座標
 		* @param[in] pos_z Z座標
 		* @param[in] degree 回転角度(デフォルトは0.0)
 		*/
-		void Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree = 0.0f);
+		void Draw(std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree = 0.0f);
 
 		/**
 		* テクスチャ読み込み関数@n

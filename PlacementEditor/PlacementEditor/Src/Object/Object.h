@@ -29,22 +29,22 @@ public:
 		m_IsDelete(false)
 	{}
 
-	/** Destructor */
+	/** @brief Destructor */
 	virtual ~Object() {}
 
 	/**
-	* ゲーム処理更新関数@n
+	* @brief 更新関数@n
 	* 継承先で必ず実装させるために純粋仮想関数にする
 	*/
 	virtual void Update() = 0;
 
 	/**
-	* 描画関数@n
+	* @brief 描画関数@n
 	* 継承先で必ず実装させるために純粋仮想関数にする
 	*/
 	virtual void Draw() = 0;
 
-	/** 削除判定フラグのゲッター */
+	/** @brief 削除判定フラグのゲッター */
 	virtual bool IsDelete()
 	{
 		return m_IsDelete;

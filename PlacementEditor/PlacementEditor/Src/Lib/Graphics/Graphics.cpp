@@ -46,9 +46,9 @@ namespace Lib
 		m_Device->Draw(pos_x, pos_y, pos_z, width, height, degree);
 	}
 
-	void Graphics::Draw(std::string texture_key_word, std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree)
+	void Graphics::Draw(std::string sprite_name, float pos_x, float pos_y, float pos_z, float degree)
 	{
-		m_Device->Draw(texture_key_word, sprite_name, pos_x, pos_y, pos_z, degree);
+		m_Device->Draw(sprite_name, pos_x, pos_y, pos_z, degree);
 	}
 
 	TextureBase* Graphics::LoadTexture(std::string file_name)

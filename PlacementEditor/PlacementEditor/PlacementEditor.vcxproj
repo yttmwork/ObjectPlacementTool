@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,6 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Collision\CollsionManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Src\Editor\Editor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Src\Lib\File\Texture\DirectX9Texture.cpp">
       <SubType>
       </SubType>
@@ -61,6 +69,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Src\Object\MouseObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Src\Object\Object.cpp" />
     <ClCompile Include="Src\Object\ObjectFactory.cpp">
       <SubType>
@@ -70,12 +82,36 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Src\Object\PlacementObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Src\Object\SpriteObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Src\Socket\ServerSocket.cpp">
       <SubType>
       </SubType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Collision\ColliderData.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Collision\CollisionManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Collision\CollisionRelatedDefinitions.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Editor\Editor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Lib\File\Texture\DirectX9Texture.h" />
     <ClInclude Include="Src\Lib\File\Texture\TextureManager.h">
       <SubType>
@@ -125,7 +161,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Src\Object\CollisionObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Object\CreateParameter\CollisionObjectCreateParameter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Object\CreateParameter\CreateParameterBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Object\CreateParameter\PlacementObjectCreateParameter.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -133,6 +181,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Src\Object\MouseObject.h" />
     <ClInclude Include="Src\Object\Object.h" />
     <ClInclude Include="Src\Object\ObjectFactory.h">
       <SubType>
@@ -146,7 +195,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Src\Object\PlacementObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Src\Object\SpriteObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Socket\ServerSocket.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Src\Socket\SocketRelatedDefinitions.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -229,7 +290,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>

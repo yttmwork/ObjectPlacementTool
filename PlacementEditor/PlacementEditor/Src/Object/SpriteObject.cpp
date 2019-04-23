@@ -19,6 +19,6 @@ void SpriteObject::Update()
 
 void SpriteObject::Draw()
 {
-	Lib::Graphics::Instance()->Draw("Character", "Character", m_PosX, m_PosY, m_PosZ, m_Degree);
+	Lib::Graphics::Instance()->Draw(m_SpriteName, m_PosX, m_PosY, m_PosZ, m_Degree);
 }
 

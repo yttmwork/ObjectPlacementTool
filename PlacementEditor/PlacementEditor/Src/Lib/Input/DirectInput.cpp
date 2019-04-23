@@ -17,8 +17,8 @@ namespace Lib
 			return false;
 		}
 
-		ZeroMemory(&m_CurrentState, sizeof(DIMOUSESTATE));
-		ZeroMemory(&m_PrevState, sizeof(DIMOUSESTATE));
+		ZeroMemory(&m_CurrentMouseState, sizeof(DIMOUSESTATE));
+		ZeroMemory(&m_PrevMouseState, sizeof(DIMOUSESTATE));
 
 		return true;
 	}
@@ -40,21 +40,21 @@ namespace Lib
 
 	void DirectInput::Update()
 	{
-		m_PrevState = m_CurrentState;
+		m_PrevMouseState = m_CurrentMouseState;
 
 		// マウスの状態を取得します
-		HRESULT	hr = m_MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &m_CurrentState);
-		if (hr == DIERR_INPUTLOST)
+		HRESULT	hr = m_MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &m_CurrentMouseState);
+		if (FAILED(hr))
 		{
 			m_MouseDevice->Acquire();
-			hr = m_MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &m_CurrentState);
+			hr = m_MouseDevice->GetDeviceState(sizeof(DIMOUSESTATE), &m_CurrentMouseState);
 		}
 	}
 
 	bool DirectInput::OnMouseDown(MouseKey key_type)
 	{
-		if (!(m_PrevState.rgbButtons[key_type] & 0x80) &&
-			m_CurrentState.rgbButtons[key_type] & 0x80 )
+		if (!(m_PrevMouseState.rgbButtons[key_type] & 0x80) &&
+			m_CurrentMouseState.rgbButtons[key_type] & 0x80 )
 		{
 			return true;
 		}
@@ -64,8 +64,8 @@ namespace Lib
 
 	bool DirectInput::OnMousePush(MouseKey key_type)
 	{
-		if (m_PrevState.rgbButtons[key_type] & 0x80 &&
-			m_CurrentState.rgbButtons[key_type] & 0x80)
+		if (m_PrevMouseState.rgbButtons[key_type] & 0x80 &&
+			m_CurrentMouseState.rgbButtons[key_type] & 0x80)
 		{
 			return true;
 		}
@@ -75,8 +75,8 @@ namespace Lib
 
 	bool DirectInput::OnMouseUp(MouseKey key_type)
 	{
-		if (m_PrevState.rgbButtons[key_type] & 0x80 &&
-			!(m_CurrentState.rgbButtons[key_type] & 0x80))
+		if (m_PrevMouseState.rgbButtons[key_type] & 0x80 &&
+			!(m_CurrentMouseState.rgbButtons[key_type] & 0x80))
 		{
 			return true;
 		}
@@ -86,7 +86,7 @@ namespace Lib
 
 	bool DirectInput::CreateInterface()
 	{
-		HRESULT ret = DirectInput8Create(GetModuleHandle(nullptr), DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&m_InputInterface, NULL);
+		HRESULT ret = DirectInput8Create(GetModuleHandle(nullptr), DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&m_InputInterface, nullptr);
 		if (FAILED(ret))
 		{
 			return false;	// 作成に失敗
@@ -113,8 +113,8 @@ namespace Lib
 
 		// モードを設定（フォアグラウンド＆非排他モード）
 		if (FAILED(m_MouseDevice->SetCooperativeLevel(
-						 FindWindow(Lib::WindowClassName.c_str(), nullptr),
-						DISCL_NONEXCLUSIVE | DISCL_FOREGROUND)))
+							FindWindow(Lib::WindowClassName.c_str(), nullptr),
+							DISCL_NONEXCLUSIVE | DISCL_FOREGROUND)))
 		{
 			// モードの設定に失敗
 			return false;

@@ -75,6 +75,12 @@ namespace Lib
 			return m_MousePos;
 		}
 
+		/** マウスの前フレーム差分ベクトル取得関数 */
+		Vec2 GetMouseMoveVec()
+		{
+			return m_MouseMoveVec;
+		}
+
 	private:
 		/**
 		* @brief Constructor@n
@@ -85,12 +91,15 @@ namespace Lib
 		Input() 
 		{}
 
+		/**
+		* @biref マウスの更新@n
+		* マウス情報の更新を行う
+		*/
 		void MouseUpdate();
 	private:
-		DirectInput* m_InputDevice;	// DirectInputのデバイスクラス
-
-		Vec2 m_MouseVec;			// マウスの移動ベクトル
-		Vec2 m_MousePos;			// マウスの座標
+		DirectInput* m_InputDevice;	//!<  DirectInputのデバイスクラス
+		Vec2 m_MouseMoveVec;		//!< マウスの移動ベクトル
+		Vec2 m_MousePos;			//!< マウスの座標
 	};
 }
 
