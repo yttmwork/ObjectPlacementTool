@@ -28,11 +28,23 @@ public:
 	* @param vertex_list 反映を行う頂点配列
 	*/
 	void ReflectOnVertex(Lib::CustomVertex2D vertex_list[4]);
+
+	/** @brief テクスチャキーワードのゲッター */
+	std::string GetTextureKeyWord()
+	{
+		return m_TextureKeyWord;
+	}
+
+	/** @brief 矩形サイズのゲッター */
+	Size GetSize()
+	{
+		return m_Size;
+	}
 private:
 	std::string m_Name;				//!< スプライト名
 	std::string m_TextureKeyWord;	//!< テクスチャキーワード
 
-	Size m_Size;					//!< 矩形サイズ
+	Size m_Size;					//!< 矩形サイズ(テクスチャサイズが設定される)
 
 	float m_NormalizePosX;			//!< 座標X(0.0～1.0に正規化)
 	float m_NormalizePosY;			//!< 座標Y(0.0～1.0に正規化)

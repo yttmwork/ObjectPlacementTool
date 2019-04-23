@@ -52,7 +52,7 @@ namespace Lib
 		m_MousePos.X = p.x;
 		m_MousePos.Y = p.y;
 
-		m_MouseVec.X = m_MousePos.X - prev.X;
-		m_MouseVec.Y = m_MousePos.Y - prev.Y;
+		m_MouseMoveVec.X = m_MousePos.X - prev.X;
+		m_MouseMoveVec.Y = m_MousePos.Y - prev.Y;
 	}
 }

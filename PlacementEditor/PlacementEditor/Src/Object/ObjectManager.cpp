@@ -1,14 +1,25 @@
 ﻿#include "ObjectManager.h"
 
-void ObjectManager::Register(Object* obj)
+void ObjectManager::AddToRegistration(Object* obj)
 {
 	if (obj == nullptr)
 	{
 		return;
 	}
 
-	m_ObjectList.push_back(obj);
+	m_RegisterList.push_back(obj);
 }
+
+void ObjectManager::Register()
+{
+	for (auto obj : m_RegisterList)
+	{
+		m_ObjectList.push_back(obj);
+	}
+
+	m_RegisterList.clear();
+}
+
 
 void ObjectManager::Update()
 {

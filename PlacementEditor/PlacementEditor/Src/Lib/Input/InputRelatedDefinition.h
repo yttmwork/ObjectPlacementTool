@@ -1,7 +1,7 @@
 ﻿#ifndef INPUT_RELATED_DEFINITION_H_
 #define INPUT_RELATED_DEFINITION_H_
 
-// マウスキー用の定数
+//!< マウスキー用の定数
 enum MouseKey
 {
 	Left,		// 左

@@ -11,14 +11,14 @@
 class SpriteManager
 {
 public:
-	/** Instanceのゲッター */
+	/** @brief Instanceのゲッター */
 	static SpriteManager* Instance()
 	{
 		static SpriteManager instance;
 		return &instance;
 	}
 public:
-	/** Destructor */
+	/** @brief Destructor */
 	~SpriteManager()
 	{
 	}
@@ -40,7 +40,7 @@ public:
 	* @param[in] sprite_name 削除するSpriteの名前
 	* @param[in] texture_key_word 削除するSpriteが使われているテクスチャのキーワード
 	*/
-	void Delete(std::string sprite_name, std::string texture_key_word);
+	void Delete(std::string sprite_name);
 
 	/**
 	* @brief Sprite全削除関数@n
@@ -53,13 +53,13 @@ public:
 	* 指定された情報のSpriteを検索する
 	* @return 見つかったSprite 見つからなかったらnullptr
 	*/
-	Sprite* Find(std::string texture_key_word, std::string sprite_name);
+	Sprite* Find(std::string sprite_name);
 
 private:
-	/** Constructor */
+	/** @brief Constructor */
 	SpriteManager() {}
 private:
-	std::map<std::string, std::map<std::string, Sprite*>> m_SpriteList; //!< 登録されたSpriteのリスト
+	std::map<std::string, Sprite*> m_SpriteList; //!< 登録されたSpriteのリスト
 };
 
 #endif

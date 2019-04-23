@@ -1,4 +1,6 @@
-﻿#include <Windows.h>
+﻿#include <windowsx.h>
+#include "../Socket/ServerSocket.h"
+#include <Windows.h>
 #include "Window.h"
 
 namespace Lib
@@ -9,6 +11,33 @@ namespace Lib
 		{
 		case WM_CLOSE:
 			PostQuitMessage(0);
+			break;
+			// 非同期通信イベント
+		case ServerSocket::WmAsync:
+			switch (WSAGETSELECTEVENT(lparam))
+			{
+				// 通信許可
+			case FD_ACCEPT:
+				if (ServerSocket::Instance()->Accept() == false)
+				{
+					ServerSocket::Instance()->CleanUp();
+				}
+				break;
+				// 受信
+			case FD_READ:
+				if (ServerSocket::Instance()->Receive(wparam) == true)
+				{
+					
+				}
+				break;
+				// 終了
+			case FD_CLOSE:
+				ServerSocket::Instance()->CleanUp();
+				break;
+			default:
+				return FALSE;
+				break;
+			}
 			break;
 		default:
 			return DefWindowProc(window_handle, message_id, wparam, lparam);

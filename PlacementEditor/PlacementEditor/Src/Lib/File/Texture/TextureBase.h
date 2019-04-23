@@ -22,7 +22,7 @@ namespace Lib
 			m_LoadCount(0)
 		{}
 
-		/** Destructor */
+		/** @brief Destructor */
 		virtual ~TextureBase() {}
 
 		/**
@@ -32,32 +32,32 @@ namespace Lib
 		virtual void Release() = 0;
 
 		/**
-		* テクスチャ設定関数@n
+		* @brief テクスチャ設定関数@n
 		* グラフィクスデバイスに保持しているテクスチャを設定する
 		* @param[in] stage_id テクスチャステージのID
 		*/
 		virtual void SetToGraphicsDevice(DWORD stage_id = 0) = 0;
 
-		/** テクスチャサイズのゲッター */
+		/** @brief テクスチャサイズのゲッター */
 		Size GetSize()
 		{
 			return m_Size;
 		}
 
-		/** 読み込みカウンターのインクリメント関数 */
+		/** @brief 読み込みカウンターのインクリメント関数 */
 		void IncCount()
 		{
 			m_LoadCount++;
 		}
 
-		/** 読み込みカウンターのデクリメント関数 */
+		/** @brief 読み込みカウンターのデクリメント関数 */
 		void DecCount()
 		{
 			m_LoadCount = max(m_LoadCount - 1, 0);
 		}
 
 		/**
-		* 解放判定関数@n
+		* @brief 解放判定関数@n
 		* テクスチャを解放することができるかどうかを判定し、結果を返す
 		* @return 判定結果 解放できる(true)
 		*/
@@ -69,7 +69,7 @@ namespace Lib
 		Size m_Size;			//!< テクスチャサイズ
 		int m_LoadCount;		//!< 読み込み回数
 	private:
-		/** Constructor */
+		/** @brief Constructor */
 		TextureBase() = delete;
 	};
 }

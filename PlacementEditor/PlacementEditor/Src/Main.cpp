@@ -1,4 +1,6 @@
-﻿#include <Windows.h>
+﻿#include <windowsx.h>
+#include "Socket/ServerSocket.h"
+#include <Windows.h>
 #include <crtdbg.h>
 #include "Utility/Size.h"
 #include "Lib/Lib.h"
@@ -8,11 +10,13 @@
 #include "Object/SpriteObject.h"
 #include "Object/CreateParameter/CreateParameterBase.h"
 #include "Object/CreateParameter/SpriteObjectCreateParameter.h"
+#include "Object/CreateParameter/PlacementObjectCreateParameter.h"
 #include "Object/ObjectFactory.h"
 #include "Object//ObjectManager.h"
 #include "Lib/Input/Input.h"
-
-//#include "DirectX.h"
+#include "Collision/CollisionManager.h"
+#include "Object/MouseObject.h"
+#include "Editor/Editor.h"
 
 int WINAPI WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -27,17 +31,40 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		return 0;
 	}
 
-	if (Lib::TextureManager::Instance()->Load("Character", "Res/Texture/Character.png") == false)
+	ServerSocket::Instance()->Start(2000);
+
+	std::map<std::string, std::string> file_name_list =
 	{
-		return 0;
+		{ "Object01", "Res/Texture/Object01.png" },
+		{ "Object02", "Res/Texture/Object02.png" },
+		{ "Object03", "Res/Texture/Object03.png" },
+		{ "Object04", "Res/Texture/Object04.png" },
+		{ "Object05", "Res/Texture/Object05.png" },
+	};
+
+	for (auto itr = file_name_list.begin(); itr != file_name_list.end(); itr++)
+	{
+		if (Lib::TextureManager::Instance()->Load(itr->first, itr->second) == false)
+		{
+			return 0;
+		}
 	}
 
-	SpriteManager::Instance()->Entry("Character", "Character", 0.0f, 0.0f, Size(128.0f, 128.0f));
-	SpriteObjectCreateParameter param = {
-		"Character", 100.0f, 100.0f, 0.0f, 0.0f, 1.0f,1.0f
-	};
-	Object* object = ObjectFactory::CreateSprite(param);
-	
+	SpriteManager::Instance()->Entry("Object01", "Object01", 0.0f, 0.0f, Size(128.0f, 128.0f));
+	SpriteManager::Instance()->Entry("Object02", "Object02", 0.0f, 0.0f, Size(128.0f, 128.0f));
+	SpriteManager::Instance()->Entry("Object03", "Object03", 0.0f, 0.0f, Size(128.0f, 128.0f));
+	SpriteManager::Instance()->Entry("Object04", "Object04", 0.0f, 0.0f, Size(128.0f, 128.0f));
+	SpriteManager::Instance()->Entry("Object05", "Object05", 0.0f, 0.0f, Size(128.0f, 128.0f));
+
+	CollisionObjectCreateParameter parameter(
+		Collision::CollisionGroup::Mouse,
+		"",
+		0.0f,
+		0.0f);
+	ObjectFactory::CreateMouse(parameter);
+
+	Editor::Instance()->Initialize("Object01");
+
 	while (true)
 	{
 		MSG msg;
@@ -56,25 +83,27 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		}
 		else 
 		{
+			Lib::Input::Instance()->Update();
+		
+			Collision::CollisionManager::Instance()->Clear();
+
 			ObjectManager::Instance()->Update();
 
-			Lib::Input::Instance()->Update();
-
-			if (Lib::Input::Instance()->OnMouseUp(MouseKey::Left) == true)
-			{
-				Vec2 pos = Lib::Input::Instance()->GetMousePos();
-				int x = 0;
-				x = 100;
-			}
+			Collision::CollisionManager::Instance()->Update();
 
 			Lib::Graphics::Instance()->StartRendering();
 
 			ObjectManager::Instance()->Draw();
 
 			Lib::Graphics::Instance()->FinishRendering();
+
+			ObjectManager::Instance()->Delete();
+
+			ObjectManager::Instance()->Register();
 		}
 	}
 
+	ServerSocket::Instance()->CleanUp();
 	Lib::Exit();
 
 	return 0;

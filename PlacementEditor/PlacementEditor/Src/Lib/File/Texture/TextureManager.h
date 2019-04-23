@@ -13,7 +13,7 @@ namespace Lib
 	class TextureManager
 	{
 	public:
-		/** Instanceのゲッター */
+		/** @brief Instanceのゲッター */
 		static TextureManager* Instance()
 		{
 			static TextureManager instance;
@@ -22,7 +22,7 @@ namespace Lib
 
 	public:
 		/**
-		* テクスチャ読み込み関数@n
+		* @brief テクスチャ読み込み関数@n
 		* 指定されたファイル名でテクスチャを読み込み@n
 		* 読み込み済みリストに登録する
 		* @return 読み込み結果 成功(true)
@@ -32,20 +32,20 @@ namespace Lib
 		bool Load(std::string key_word, std::string file_name);
 
 		/**
-		* テクスチャ解放関数@n
+		* @brief テクスチャ解放関数@n
 		* 指定されたキーワードのテクスチャを解放する
 		* @param[in] key_word 削除をするテクスチャのキーワード
 		*/
 		void Release(std::string key_word);
 
 		/**
-		* テクスチャ全開放関数@n
+		* @brief テクスチャ全開放関数@n
 		* このクラスが保持しているテクスチャを全て解放する
 		*/
 		void AllRelease();
 
 		/**
-		* テクスチャ検索関数@n
+		* @brief テクスチャ検索関数@n
 		* 指定されたキーワードのテクスチャがあるかを調べる
 		* @return 見つかったテクスチャデータ 見つからなかったらnullptr
 		* @param[in] key_word 探したいテクスチャのキーワード
