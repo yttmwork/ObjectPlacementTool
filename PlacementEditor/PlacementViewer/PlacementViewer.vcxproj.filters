@@ -91,9 +91,6 @@
     <ClCompile Include="Src\Collision\CollsionManager.cpp">
       <Filter>ソース ファイル\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Socket\ServerSocket.cpp">
-      <Filter>ソース ファイル\Socket</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -102,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="Src\Object\MouseObject.cpp">
       <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Socket\ClientSocket.cpp">
+      <Filter>ソース ファイル\Socket</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,13 +204,13 @@
     <ClInclude Include="Src\Object\CreateParameter\CollisionObjectCreateParameter.h">
       <Filter>ソース ファイル\Object\CreateParameter</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Socket\ServerSocket.h">
-      <Filter>ソース ファイル\Socket</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Editor\Editor.h">
       <Filter>ソース ファイル\Editor</Filter>
     </ClInclude>
     <ClInclude Include="Src\Socket\SocketRelatedDefinitions.h">
+      <Filter>ソース ファイル\Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Socket\ClientSocket.h">
       <Filter>ソース ファイル\Socket</Filter>
     </ClInclude>
   </ItemGroup>

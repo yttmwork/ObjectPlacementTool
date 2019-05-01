@@ -1,5 +1,5 @@
 ﻿#include <windowsx.h>
-#include "../Socket/ServerSocket.h"
+#include "../Socket/ClientSocket.h"
 #include "../Socket/SocketRelatedDefinitions.h"
 #include <Windows.h>
 #include "Window.h"
@@ -19,21 +19,21 @@ namespace Lib
 			{
 				// 通信許可
 			case FD_ACCEPT:
-				if (ServerSocket::Instance()->Accept() == false)
+				if (ClientSocket::Instance()->Accept() == false)
 				{
-					ServerSocket::Instance()->CleanUp();
+					ClientSocket::Instance()->CleanUp();
 				}
 				break;
 				// 受信
 			case FD_READ:
-				if (ServerSocket::Instance()->Receive(wparam) == true)
+				if (ClientSocket::Instance()->Receive(wparam) == true)
 				{
 					
 				}
 				break;
 				// 終了
 			case FD_CLOSE:
-				ServerSocket::Instance()->CleanUp();
+				ClientSocket::Instance()->CleanUp();
 				break;
 			default:
 				return FALSE;

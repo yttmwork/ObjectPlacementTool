@@ -90,7 +90,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Src\Socket\ServerSocket.cpp">
+    <ClCompile Include="Src\Socket\ClientSocket.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -203,7 +203,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Src\Socket\ServerSocket.h">
+    <ClInclude Include="Src\Socket\ClientSocket.h">
       <SubType>
       </SubType>
     </ClInclude>

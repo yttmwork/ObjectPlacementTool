@@ -1,5 +1,5 @@
 ﻿#include <windowsx.h>
-#include "Socket/ServerSocket.h"
+#include "Socket/ClientSocket.h"
 #include <Windows.h>
 #include <crtdbg.h>
 #include "Utility/Size.h"
@@ -31,7 +31,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		return 0;
 	}
 
-	ServerSocket::Instance()->Start(2000);
+	ClientSocket::Instance()->Start(2000);
 
 	std::map<std::string, std::string> file_name_list =
 	{
@@ -103,7 +103,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		}
 	}
 
-	ServerSocket::Instance()->CleanUp();
+	ClientSocket::Instance()->CleanUp();
 	Lib::Exit();
 
 	return 0;
