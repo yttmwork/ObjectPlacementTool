@@ -1,5 +1,5 @@
-﻿#ifndef SERVER_SOCKET_H_
-#define SERVER_SOCKET_H_
+﻿#ifndef CLIENT_SOCKET_H_
+#define CLIENT_SOCKET_H_
 
 #define WIN32_LEAN_AND_MEAN
 #include <WinSock2.h>
@@ -9,7 +9,7 @@
 //=====================================================================//
 //! ソケットクラス
 //=====================================================================//
-class ServerSocket
+class ClientSocket
 {
 public:
 	/**
@@ -18,9 +18,9 @@ public:
 	* 必ずこのメソッドを通して、他のメンバにアクセスすること
 	* @return インスタンスのポインタ
 	*/
-	static ServerSocket* Instance()
+	static ClientSocket* Instance()
 	{
-		static ServerSocket instance;
+		static ClientSocket instance;
 
 		return &instance;
 	}
@@ -60,7 +60,7 @@ private:
 	* メンバの初期化だけを行うようにする@n
 	* privateなのはインスタンス化阻止対応
 	*/
-	ServerSocket() {}
+	ClientSocket() {}
 
 private:
 	int m_PortNo;				//!< ポート番号

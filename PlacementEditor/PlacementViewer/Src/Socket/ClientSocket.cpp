@@ -1,10 +1,10 @@
 ﻿#include <windowsx.h>
 #include "SocketRelatedDefinitions.h"
-#include "ServerSocket.h"
+#include "ClientSocket.h"
 #include "../Lib/Window.h"
 #include "../Editor/Editor.h"
 
-bool ServerSocket::Start(int port_no)
+bool ClientSocket::Start(int port_no)
 {
 	WORD version_request = MAKEWORD(1, 1);
 
@@ -55,7 +55,7 @@ bool ServerSocket::Start(int port_no)
 	return true;
 }
 
-bool ServerSocket::Accept()
+bool ClientSocket::Accept()
 {
 	SOCKET socket;
 	SOCKADDR sock_addr;
@@ -95,7 +95,7 @@ bool ServerSocket::Accept()
 	return true;
 }
 
-bool ServerSocket::Receive(SOCKET socket)
+bool ClientSocket::Receive(SOCKET socket)
 {
 	char buff[1024];
 	memset(buff, 0, sizeof(char) * 1024);
@@ -121,7 +121,7 @@ bool ServerSocket::Receive(SOCKET socket)
 	return true;
 }
 
-void ServerSocket::CleanUp()
+void ClientSocket::CleanUp()
 {
 	// 接続したソケットを解除する
 	shutdown(m_ConnectSocket, SD_BOTH);
