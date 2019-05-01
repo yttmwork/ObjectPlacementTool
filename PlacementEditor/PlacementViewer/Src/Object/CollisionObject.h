@@ -64,7 +64,7 @@ public:
 	* @brief 当たりデータの更新関数@n
 	* ColliderDataの更新を行う
 	*/
-	virtual void UpdateCollisionData() = 0;
+	//virtual void UpdateCollisionData() = 0;
 
 	/** 
 	* @brief 当たりデータ取得関数@n

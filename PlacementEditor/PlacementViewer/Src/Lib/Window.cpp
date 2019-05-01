@@ -1,5 +1,6 @@
 ﻿#include <windowsx.h>
 #include "../Socket/ServerSocket.h"
+#include "../Socket/SocketRelatedDefinitions.h"
 #include <Windows.h>
 #include "Window.h"
 
@@ -13,7 +14,7 @@ namespace Lib
 			PostQuitMessage(0);
 			break;
 			// 非同期通信イベント
-		case ServerSocket::WmAsync:
+		case WmAsync:
 			switch (WSAGETSELECTEVENT(lparam))
 			{
 				// 通信許可
