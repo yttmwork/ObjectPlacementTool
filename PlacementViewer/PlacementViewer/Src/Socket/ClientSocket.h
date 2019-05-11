@@ -34,11 +34,11 @@ public:
 	bool Start(int port_no);
 
 	/**
-	* @brief ソケット許可関数@n
-	* クライアントとの通信を許可する
-	* @return クライアントとの通信許可の成否(成功はtrue)
+	* @brief ソケット接続関数@n
+	* サーバーソケットに接続する
+	* @return サーバー接続の成否(成功はtrue)
 	*/
-	bool Accept();
+	bool Connect();
 
 	/**
 	* @brief 受信関数@n
@@ -63,9 +63,10 @@ private:
 	ClientSocket() {}
 
 private:
-	int m_PortNo;				//!< ポート番号
-	SOCKET m_ServerSocket;		//!< サーバー用ソケット
-	SOCKET m_ConnectSocket;		//!< 接続側ソケット
+	int m_PortNo;							//!< ポート番号
+	SOCKET m_Socket;						//!< サーバー用ソケット
+	SOCKET m_ConnectSocket;					//!< 接続側ソケット
+	char m_HostInfoBuff[MAXGETHOSTSTRUCT];	//!< ホスト情報格納のバッファ 
 };
 
 #endif

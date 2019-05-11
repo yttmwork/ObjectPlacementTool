@@ -11,6 +11,9 @@ enum CommunicationCommand
 	SelectSprite,	//!< 選択中のスプライト
 };
 
-const UINT WmAsync = (WM_USER + 1);	//!< 通信通知用ID
+const UINT WmAsync = (WM_USER + 1);				//!< 通信通知用ID
+const UINT WmServerByName = (WM_USER + 2);
+const UINT WmServerByAddress = (WM_USER + 3);
+const UINT HostInfoBuffSize = 256;
 
 #endif

@@ -17,13 +17,6 @@ namespace Lib
 		case WmAsync:
 			switch (WSAGETSELECTEVENT(lparam))
 			{
-				// 通信許可
-			case FD_ACCEPT:
-				if (ClientSocket::Instance()->Accept() == false)
-				{
-					ClientSocket::Instance()->CleanUp();
-				}
-				break;
 				// 受信
 			case FD_READ:
 				if (ClientSocket::Instance()->Receive(wparam) == true)
@@ -38,6 +31,29 @@ namespace Lib
 			default:
 				return FALSE;
 				break;
+			}
+			break;
+			// サーバーの名前取得
+		case WmServerByName:
+			if (ClientSocket::Instance()->Connect() == false)
+			{
+
+			}
+			break;
+			// サーバーのアドレス取得
+		case WmServerByAddress:
+			if (WSAGETASYNCERROR(lparam) == 0)
+			{
+				// ⑧．サーバーへ接続依頼
+				if (ClientSocket::Instance()->Connect() == FALSE)
+				{
+					MessageBox(NULL, TEXT("接続に失敗しました。"), TEXT("接続エラー"), MB_OK);
+				}
+			}
+			else {
+				int async_error = WSAGETASYNCERROR(lparam);
+				int error = WSAGetLastError();
+				MessageBox(NULL, TEXT("ホストの取得に失敗しました。"), TEXT("ホスト情報取得エラー"), MB_OK);
 			}
 			break;
 		default:
