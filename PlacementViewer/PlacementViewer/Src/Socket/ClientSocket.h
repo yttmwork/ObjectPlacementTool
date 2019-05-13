@@ -42,7 +42,7 @@ public:
 
 	/**
 	* @brief 受信関数@n
-	* クライアントからのデータを受信する
+	* サーバーからのデータを受信する
 	* @param[in] socket 送信してきたソケット
 	*/
 	bool Receive(SOCKET socket);
@@ -64,8 +64,7 @@ private:
 
 private:
 	int m_PortNo;							//!< ポート番号
-	SOCKET m_Socket;						//!< サーバー用ソケット
-	SOCKET m_ConnectSocket;					//!< 接続側ソケット
+	SOCKET m_Socket;						//!< ソケット
 	char m_HostInfoBuff[MAXGETHOSTSTRUCT];	//!< ホスト情報格納のバッファ 
 };
 

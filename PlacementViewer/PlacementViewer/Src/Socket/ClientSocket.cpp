@@ -23,40 +23,11 @@ bool ClientSocket::Start(int port_no)
 		return false;
 	}
 
-	if (WSAAsyncSelect(
-		m_Socket,
-		FindWindow(Lib::WindowClassName.c_str(), nullptr),
-		WmAsync,
-		FD_CONNECT))
-	{
-		closesocket(m_Socket);
-		return false;
-	}
-
-	SOCKADDR_IN sock_addr;
-	memset(&sock_addr, 0, sizeof(SOCKADDR_IN));
-	sock_addr.sin_family = AF_INET;
-	sock_addr.sin_port = htons(m_PortNo);
-	sock_addr.sin_addr.s_addr = INADDR_ANY;
-
-	if (bind(m_Socket, (SOCKADDR*)&sock_addr, sizeof(SOCKADDR_IN)) ==
-		SOCKET_ERROR)
-	{
-		closesocket(m_Socket);
-		return false;
-	}
-
-	if (listen(m_Socket, 0) == SOCKET_ERROR)
-	{
-		closesocket(m_Socket);
-		return false;
-	}
-
 	// URLからホスト情報取得
 	WSAAsyncGetHostByName(
 		FindWindow(Lib::WindowClassName.c_str(), nullptr),
 		WmServerByName,
-		m_HostInfoBuff,
+		"localhost",
 		(char *)m_HostInfoBuff,
 		HostInfoBuffSize);
 
@@ -69,32 +40,32 @@ bool ClientSocket::Connect()
 	unsigned int addr;
 	SOCKADDR_IN sock_addr;
 
-	memset(m_HostInfoBuff, 0, sizeof(char) * MAXGETHOSTSTRUCT);
-
 	// サーバーへ接続するための準備
 	phost = (LPHOSTENT)m_HostInfoBuff;
 
 	memset(&sock_addr, 0, sizeof(SOCKADDR_IN));
-	sock_addr.sin_family = AF_INET;
-	sock_addr.sin_port = htons(m_PortNo);
-	sock_addr.sin_addr.s_addr = *((unsigned long*)phost->h_addr);
+	if (phost->h_name != nullptr &&
+		phost->h_addr_list != nullptr)
+	{
+		sock_addr.sin_family = AF_INET;
+		sock_addr.sin_port = htons(m_PortNo);
+		sock_addr.sin_addr.s_addr = *((unsigned long*)phost->h_addr);
+	}
 
 	// クライアントソケットをサーバーのソケットに接続する
 	if (connect(m_Socket, (SOCKADDR*)&sock_addr, sizeof(sock_addr)) == SOCKET_ERROR)
 	{
-		if (WSAGetLastError() == WSAEWOULDBLOCK)
-		{
-			// 失敗したら次はIPアドレスで試す
-			WSAAsyncGetHostByAddr(
-				FindWindow(Lib::WindowClassName.c_str(), nullptr),
-				WmServerByAddress,
-				"localhost",
-				sizeof(char*),
-				AF_INET,
-				m_HostInfoBuff,
-				MAXGETHOSTSTRUCT);
-		}
+		return false;
+	}
 
+	if (WSAAsyncSelect(
+		m_Socket,
+		FindWindow(Lib::WindowClassName.c_str(), nullptr),
+		WmAsync,
+		FD_CONNECT | FD_READ | FD_CLOSE))
+	{
+		closesocket(m_Socket);
+		return false;
 	}
 
 	return true;
@@ -105,7 +76,7 @@ bool ClientSocket::Receive(SOCKET socket)
 	char buff[1024];
 	memset(buff, 0, sizeof(char) * 1024);
 
-	if (socket != m_ConnectSocket)
+	if (socket != m_Socket)
 	{
 		return false;
 	}
@@ -129,8 +100,7 @@ bool ClientSocket::Receive(SOCKET socket)
 void ClientSocket::CleanUp()
 {
 	// 接続したソケットを解除する
-	shutdown(m_ConnectSocket, SD_BOTH);
-	closesocket(m_ConnectSocket);
+	shutdown(m_Socket, SD_BOTH);
 
 	// サーバー用ソケットを閉じる
 	if (m_Socket != 0 && m_Socket != INVALID_SOCKET)
