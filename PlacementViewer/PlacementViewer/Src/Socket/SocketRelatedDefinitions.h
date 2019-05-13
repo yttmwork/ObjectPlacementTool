@@ -12,8 +12,8 @@ enum CommunicationCommand
 };
 
 const UINT WmAsync = (WM_USER + 1);				//!< 通信通知用ID
-const UINT WmServerByName = (WM_USER + 2);
-const UINT WmServerByAddress = (WM_USER + 3);
-const UINT HostInfoBuffSize = 256;
+const UINT WmServerByName = (WM_USER + 2);		//!< ホスト名検索通知ID
+const UINT WmServerByAddress = (WM_USER + 3);	//!< アドレス検索通知ID
+const UINT HostInfoBuffSize = 256;				//!< ホスト情報格納用バッファのサイズ
 
 #endif

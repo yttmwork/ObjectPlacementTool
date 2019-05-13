@@ -19,7 +19,7 @@ namespace Lib
 			{
 				// 受信
 			case FD_READ:
-				if (ClientSocket::Instance()->Receive(wparam) == true)
+				if (ClientSocket::Instance()->Receive(wparam) == false)
 				{
 					
 				}
@@ -37,25 +37,25 @@ namespace Lib
 		case WmServerByName:
 			if (ClientSocket::Instance()->Connect() == false)
 			{
-
+				MessageBox(NULL, TEXT("接続に失敗しました。"), TEXT("接続エラー"), MB_OK);
 			}
 			break;
-			// サーバーのアドレス取得
-		case WmServerByAddress:
-			if (WSAGETASYNCERROR(lparam) == 0)
-			{
-				// ⑧．サーバーへ接続依頼
-				if (ClientSocket::Instance()->Connect() == FALSE)
-				{
-					MessageBox(NULL, TEXT("接続に失敗しました。"), TEXT("接続エラー"), MB_OK);
-				}
-			}
-			else {
-				int async_error = WSAGETASYNCERROR(lparam);
-				int error = WSAGetLastError();
-				MessageBox(NULL, TEXT("ホストの取得に失敗しました。"), TEXT("ホスト情報取得エラー"), MB_OK);
-			}
-			break;
+		//	// サーバーのアドレス取得
+		//case WmServerByAddress:
+		//	if (WSAGETASYNCERROR(lparam) == 0)
+		//	{
+		//		if (ClientSocket::Instance()->Connect() == FALSE)
+		//		{
+		//			MessageBox(NULL, TEXT("接続に失敗しました。"), TEXT("接続エラー"), MB_OK);
+		//		}
+		//	}
+		//	else 
+		//	{
+		//		int async_error = WSAGETASYNCERROR(lparam);
+		//		int error = WSAGetLastError();
+		//		MessageBox(NULL, TEXT("ホストの取得に失敗しました。"), TEXT("ホスト情報取得エラー"), MB_OK);
+		//	}
+		//	break;
 		default:
 			return DefWindowProc(window_handle, message_id, wparam, lparam);
 			break;
