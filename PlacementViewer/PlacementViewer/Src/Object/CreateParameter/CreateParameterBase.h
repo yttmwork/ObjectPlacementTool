@@ -36,6 +36,10 @@ struct CreateParameterBase
 
 	float ScaleX;	//!< X軸拡縮率
 	float ScaleY;	//!< Y軸拡縮率
+
+private:
+	/** @brief Constructor */
+	CreateParameterBase() = delete;
 };
 
 #endif

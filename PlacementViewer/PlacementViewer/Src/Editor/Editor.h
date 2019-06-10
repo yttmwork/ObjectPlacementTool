@@ -4,6 +4,9 @@
 #include <string>
 #include "../Object/PlacementObject.h"
 
+//=====================================================================//
+//! エディタークラス
+//=====================================================================//
 class Editor
 {
 public:
@@ -27,7 +30,7 @@ public:
 	void Initialize(std::string select_sprite_name)
 	{
 		m_SelectSpriteName = select_sprite_name;
-		m_SelectObject = nullptr;
+		m_DragObject = nullptr;
 	}
 
 	/**
@@ -37,22 +40,22 @@ public:
 	*/
 	void Recive(char buffer[1024]);
 
-	/** @brief 選択配置オブジェクトSprite名のゲッター */
+	/** @brief ツールで選択中のSprite名のゲッター */
 	std::string GetSelectSpriteName()
 	{
 		return m_SelectSpriteName;
 	}
 
-	/** @brief 選択オブジェクトのゲッター */
-	PlacementObject* GetSeletObject()
+	/** @brief ドラッグオブジェクトのゲッター */
+	PlacementObject* GetDragObject()
 	{
-		return m_SelectObject;
+		return m_DragObject;
 	}
 
-	/** @brief 選択オブジェクトのセッター */
-	void SetSelectObject(PlacementObject* obj)
+	/** @brief ドラッグオブジェクトのセッター */
+	void SetDragObject(PlacementObject* obj)
 	{
-		m_SelectObject = obj;
+		m_DragObject = obj;
 	}
 private:
 	/**
@@ -64,8 +67,8 @@ private:
 	Editor() {}
 
 private:
-	std::string m_SelectSpriteName;		//!< ツールで選択中のスプライト名
-	PlacementObject* m_SelectObject;	//!< 選択中のオブジェクト
+	std::string m_SelectSpriteName;	//!< ツールで選択中のスプライト名
+	PlacementObject* m_DragObject;	//!< ドラッグ中のオブジェクト
 };
 
 #endif

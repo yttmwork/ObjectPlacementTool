@@ -40,13 +40,13 @@ namespace Lib
 		* @param[in] width バッファの横幅
 		* @param[in] height バッファの縦幅
 		* @param[in] is_window_mode ウィンドウモード設定(オプション：デフォルトはウィンドウモード)
-		* @param[in] window_handle GraphicsDeviceで使用するウィンドウハンドル(オプション：デフォルトはWindow生成で使用したウィンドウハンドル)
+		* @param[in] window_handle GraphicsDeviceで使用するウィンドウハンドル(オプション：デフォルトはnullptr(CreateWindowのハンドルを使う))
 		*/
 		bool Initialize(unsigned int width, unsigned int height, bool is_window_mode = true, HWND window_handle = nullptr);
 
 		/**
 		* @brief 解放関数@n
-		* GraphicsDevice、Factoryの解放を行う
+		* GraphicsDeviceの解放を行う
 		*/
 		void Release();
 

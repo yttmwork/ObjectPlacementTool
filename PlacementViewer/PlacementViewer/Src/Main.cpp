@@ -26,13 +26,16 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	// メモリリーク検出
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
+	// ライブラリ初期化
 	if (Lib::Initialize("オブジェクト配置画面", 1280, 720) == false)
 	{
 		return 0;
 	}
 
+	// ソケット通信開始
 	ClientSocket::Instance()->Start(2000);
 
+	// リソースファイル名
 	std::map<std::string, std::string> file_name_list =
 	{
 		{ "Object01", "Res/Texture/Object01.png" },
@@ -42,6 +45,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		{ "Object05", "Res/Texture/Object05.png" },
 	};
 
+	// リソースの読み込み
 	for (auto itr = file_name_list.begin(); itr != file_name_list.end(); itr++)
 	{
 		if (Lib::TextureManager::Instance()->Load(itr->first, itr->second) == false)
@@ -50,12 +54,14 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		}
 	}
 
+	// Spriteの登録
 	SpriteManager::Instance()->Entry("Object01", "Object01", 0.0f, 0.0f, Size(128.0f, 128.0f));
 	SpriteManager::Instance()->Entry("Object02", "Object02", 0.0f, 0.0f, Size(128.0f, 128.0f));
 	SpriteManager::Instance()->Entry("Object03", "Object03", 0.0f, 0.0f, Size(128.0f, 128.0f));
 	SpriteManager::Instance()->Entry("Object04", "Object04", 0.0f, 0.0f, Size(128.0f, 128.0f));
 	SpriteManager::Instance()->Entry("Object05", "Object05", 0.0f, 0.0f, Size(128.0f, 128.0f));
 
+	// Mouseオブジェクトの作成
 	CollisionObjectCreateParameter parameter(
 		Collision::CollisionGroup::Mouse,
 		"",
@@ -63,6 +69,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		0.0f);
 	ObjectFactory::CreateMouse(parameter);
 
+	// Editorの初期化
 	Editor::Instance()->Initialize("Object01");
 
 	while (true)

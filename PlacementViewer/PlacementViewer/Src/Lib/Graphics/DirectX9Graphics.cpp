@@ -99,11 +99,11 @@ namespace Lib
 
 		for (int i = 0; i < 4; i++)
 		{
-			vertex_list[i].m_X = pos_x;
-			vertex_list[i].m_Y = pos_y;
-			vertex_list[i].m_Z = pos_z;
-			vertex_list[i].m_Rhw = 1.0f;
-			vertex_list[i].m_Color = 0xffffffff;
+			vertex_list[i].X = pos_x;
+			vertex_list[i].Y = pos_y;
+			vertex_list[i].Z = pos_z;
+			vertex_list[i].Rhw = 1.0f;
+			vertex_list[i].Color = 0xffffffff;
 		}
 		Sprite* sprite = SpriteManager::Instance()->Find(sprite_name);
 		if (sprite == nullptr)
@@ -186,7 +186,7 @@ namespace Lib
 		// バックバッファのフォーマット => D3DFMT_UNKNOWN(フォーマットを知りません)
 		m_PresentParameter.BackBufferFormat = D3DFMT_X8R8G8B8;
 		// ウィンドウモード設定 => 定数で切り替え
-			// プレゼンテーションパラメータの設定
+		// プレゼンテーションパラメータの設定
 		// フルスクリーンかどうか
 		if (is_window_mode == true)
 		{

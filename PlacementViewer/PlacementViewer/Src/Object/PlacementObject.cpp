@@ -71,10 +71,10 @@ void PlacementObject::ReflectCollision(CollisionObject* object)
 	if (object->GetCollisionGroup() == Collision::CollisionGroup::Mouse)
 	{
 		if (Lib::Input::Instance()->OnMousePush(MouseKey::Left) == true &&
-			Editor::Instance()->GetSeletObject() == nullptr)
+			Editor::Instance()->GetDragObject() == nullptr)
 		{
 			m_IsSelect = true;
-			Editor::Instance()->SetSelectObject(this);
+			Editor::Instance()->SetDragObject(this);
 		}
 		else if (Lib::Input::Instance()->OnMouseUp(MouseKey::Right) == true)
 		{

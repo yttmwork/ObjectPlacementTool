@@ -7,7 +7,7 @@ Sprite::Sprite(std::string name, std::string texture_key_word, float x, float y,
 	m_Size(sprite_size)
 {
 	Lib::TextureBase* texture = Lib::TextureManager::Instance()->Find(m_TextureKeyWord);
-	if (texture == nullptr)
+	if (texture != nullptr)
 	{
 		Size texture_size = texture->GetSize();
 		m_NormalizePosX = x / texture_size.Width;
@@ -42,10 +42,10 @@ void Sprite::ReflectOnVertex(Lib::CustomVertex2D vertex_list[4])
 
 	for (int i = 0; i < 4; i++)
 	{
-		vertex_list[i].m_X += pos_list[i][0];
-		vertex_list[i].m_Y += pos_list[i][1];
+		vertex_list[i].X += pos_list[i][0];
+		vertex_list[i].Y += pos_list[i][1];
 
-		vertex_list[i].m_Tu = tu_tv_list[i][0];
-		vertex_list[i].m_Tv = tu_tv_list[i][1];
+		vertex_list[i].Tu = tu_tv_list[i][0];
+		vertex_list[i].Tv = tu_tv_list[i][1];
 	}
 }

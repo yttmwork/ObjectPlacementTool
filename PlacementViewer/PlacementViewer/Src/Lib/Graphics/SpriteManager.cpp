@@ -33,10 +33,5 @@ Sprite* SpriteManager::Find(std::string sprite_name)
 		return nullptr;
 	}
 
-	if (m_SpriteList.count(sprite_name) == 0)
-	{
-		return nullptr;
-	}
-
 	return m_SpriteList[sprite_name];
 }

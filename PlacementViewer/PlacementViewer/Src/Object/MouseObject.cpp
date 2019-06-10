@@ -22,7 +22,7 @@ void MouseObject::Update()
 
 	if (Lib::Input::Instance()->OnMouseUp(MouseKey::Left))
 	{
-		Editor::Instance()->SetSelectObject(nullptr);
+		Editor::Instance()->SetDragObject(nullptr);
 
 		float distance = sqrt((pos.X - m_ClickPos.X) * (pos.X - m_ClickPos.X) * (pos.Y - m_ClickPos.Y) * (pos.Y - m_ClickPos.Y));
 
