@@ -38,7 +38,6 @@ public:
 	* @brief Sprite削除関数@n
 	* 指定された情報からSpriteを削除する
 	* @param[in] sprite_name 削除するSpriteの名前
-	* @param[in] texture_key_word 削除するSpriteが使われているテクスチャのキーワード
 	*/
 	void Delete(std::string sprite_name);
 
@@ -51,7 +50,7 @@ public:
 	/**
 	* @brief 検索関数@n
 	* 指定された情報のSpriteを検索する
-	* @return 見つかったSprite 見つからなかったらnullptr
+	* @return 見つかったSprite* 見つからなかったらnullptr
 	*/
 	Sprite* Find(std::string sprite_name);
 

@@ -28,6 +28,9 @@ struct PlacementObjectCreateParameter : public CollisionObjectCreateParameter
 	{}
 
 	PlacementType Placement;	//!< 配置オブジェクトの種類
+private:
+	/** @brief Constructor */
+	PlacementObjectCreateParameter() = delete;
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 namespace Collision
 {
+	// Colliderの種類
 	enum ColliderType
 	{
 		Point,
@@ -10,6 +11,7 @@ namespace Collision
 		Circle,
 	};
 
+	// 衝突データグループ
 	enum CollisionGroup
 	{
 		Mouse,

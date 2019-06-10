@@ -7,6 +7,7 @@ namespace Collision
 {
 	CollisionManager::CollisionManager()
 	{
+		// 衝突の組み合わせを設定する
 		m_CombinationList[CollisionGroup::PlacementObj].push_back(CollisionGroup::Mouse);
 	}
 
@@ -26,6 +27,7 @@ namespace Collision
 					continue;
 				}
 
+				// 二つのグループで当たり判定を開始する
 				StartCollisionCombination(combination_a.first, combination_b);
 			}
 		}
@@ -37,12 +39,13 @@ namespace Collision
 		{
 			for (auto obj_b : m_ColliderList[group_b])
 			{
-				SelectCollisionTypeCombination(obj_a, obj_b);
+				// 当たりの組み合わせを選択する
+				SelectColliderCombination(obj_a, obj_b);
 			}
 		}
 	}
 
-	void CollisionManager::SelectCollisionTypeCombination(CollisionObject* obj_a, CollisionObject* obj_b)
+	void CollisionManager::SelectColliderCombination(CollisionObject* obj_a, CollisionObject* obj_b)
 	{
 		ColliderType type_a = obj_a->GetColliderType();
 		ColliderType type_b = obj_b->GetColliderType();
@@ -53,6 +56,7 @@ namespace Collision
 			switch (type_b)
 			{
 			case ColliderType::Point:
+				// 点と矩形の当たり
 				RunCollisionPointAndRect(obj_b, obj_a);
 				break;
 			}
@@ -61,6 +65,7 @@ namespace Collision
 			switch (type_b)
 			{
 			case ColliderType::Rect:
+				// 点と矩形の当たり
 				RunCollisionPointAndRect(obj_a, obj_b);
 				break;
 			}
@@ -76,16 +81,17 @@ namespace Collision
 		point_a->GetColliderData(point);
 		rect_b->GetColliderData(rect);
 
-
+		// 回転無し
 		if (rect.Degree == 0.0f)
 		{
+			// 矩形の中に点があれば当たり
 			if (point.X >= rect.X && point.X <= (rect.X + rect.Width) &&
 				point.Y >= rect.Y && point.Y <= (rect.Y + rect.Height))
 			{
+				// 反映
 				point_a->ReflectCollision(rect_b);
 				rect_b->ReflectCollision(point_a);
 			}
 		}
 	}
-
 }
